@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage
 
 import scala.collection.parallel.CollectionConverters.RangeIsParallelizable
 
-class AsyncMedianFilter(private val windowWidth: Int = 10, private val windowHeight: Int = 10) {
+class AsyncMedianFilter(val windowWidth: Int = 10, val windowHeight: Int = 10) {
   private val edgeX: Int = windowWidth / 2
   private val edgeY: Int = windowHeight / 2
 

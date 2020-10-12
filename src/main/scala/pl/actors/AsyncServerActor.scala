@@ -13,7 +13,7 @@ class AsyncServerActor extends  Actor {
       val timer: Timer = new Timer()
 
       log.info("Creating Async Median Filter...")
-      val asyncMedianFilter: AsyncMedianFilter = new AsyncMedianFilter()
+      val asyncMedianFilter: AsyncMedianFilter = new AsyncMedianFilter(40,40)
 
       log.info("Applying Async Median Filter...")
       timer.start()
@@ -22,7 +22,7 @@ class AsyncServerActor extends  Actor {
       log.info("Finished applying Async Median Filter...")
 
       log.info("Saving Async Image...")
-      fileReader.saveImage(filteredImage, "parallelized")
+      fileReader.saveImage(filteredImage, f"parallelized-${asyncMedianFilter.windowWidth}x${asyncMedianFilter.windowHeight}")
       log.info("Async Image Saved...")
 
       clientActor ! ShowResult(fileReader, timer, isAsync = true)

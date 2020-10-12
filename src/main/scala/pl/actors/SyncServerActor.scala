@@ -15,7 +15,7 @@ class SyncServerActor extends Actor {
       log.debug(lastSender.toString())
 
       log.info("Creating Sync Median Filter...")
-      val syncMedianFilter: SyncMedianFilter = new SyncMedianFilter()
+      val syncMedianFilter: SyncMedianFilter = new SyncMedianFilter(40,40)
 
       log.info("Applying Sync Median Filter...")
       timer.start()
@@ -24,7 +24,7 @@ class SyncServerActor extends Actor {
       log.info("Finished applying Sync Median Filter...")
 
       log.info("Saving Sync Image...")
-      fileReader.saveImage(filteredImage, "serial")
+      fileReader.saveImage(filteredImage, f"serial-${syncMedianFilter.windowWidth}x${syncMedianFilter.windowHeight}")
       log.info("Sync Image Saved...")
 
       clientActor ! ShowResult(fileReader, timer, isAsync = false)

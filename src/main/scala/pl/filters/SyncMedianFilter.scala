@@ -2,7 +2,7 @@ package pl.filters
 
 import java.awt.image.BufferedImage
 
-class SyncMedianFilter(private val windowWidth: Int = 10, private val windowHeight: Int = 10) {
+class SyncMedianFilter(val windowWidth: Int = 10, val windowHeight: Int = 10) {
   private val edgeX: Int = windowWidth / 2
   private val edgeY: Int = windowHeight / 2
 
